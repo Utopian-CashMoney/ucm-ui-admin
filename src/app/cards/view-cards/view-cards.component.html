@@ -1,0 +1,21 @@
+<h2>List of Cards</h2>
+<h3>Total cards: {{ totalCards }}</h3>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">Account Number</th>
+        <th scope="col">Card Number</th>
+        <th scope="col">Expiration</th>
+        <th scope="col">CVV</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let c of cards; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td> AccountNumber</td>
+        <td>{{ c.cardNumber }}</td>
+        <td>{{ c.exp }}</td>
+        <td>{{ c.cvv }}</td>
+    </tbody>
+  </table>
