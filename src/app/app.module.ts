@@ -10,6 +10,8 @@ import { FooterComponent } from './layout/footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgxPopper } from 'angular-popper';
+import { LoansComponent } from './loans/loans.component';
 
 @NgModule({
   declarations: [
@@ -18,13 +20,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     LayoutComponent,
     HeaderComponent,
     FooterComponent,
-    HomeComponent
+    HomeComponent,
+    LoansComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    NgbModule
+    NgbModule,
+    NgxPopper
   ],
   providers: [],
   bootstrap: [AppComponent]
