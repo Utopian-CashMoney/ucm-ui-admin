@@ -1,1 +1,23 @@
-<p>Here are a bunch of cards and stuff</p>
+<div class="container">
+    <h3>Cards</h3>
+    <h5>Total cards: {{ totalCards }}</h5>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">id</th>
+          <th scope="col">Account Number</th>
+          <th scope="col">Card Number</th>
+          <th scope="col">Expiration</th>
+          <th scope="col">CVV</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let c of cards; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td> AccountNumber</td>
+          <td>{{ c.cardNumber }}</td>
+          <td>{{ c.exp }}</td>
+          <td>{{ c.cvv }}</td>
+      </tbody>
+    </table>
+  </div>
