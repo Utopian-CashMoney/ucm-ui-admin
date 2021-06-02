@@ -15,6 +15,7 @@ import { NgxPopper } from 'angular-popper';
 import { LoansComponent } from './loans/loans.component';
 import { HttpService } from './shared/services/http.service';
 import { BranchesComponent } from './branches/branches.component';
+import { AccountsComponent } from './accounts/accounts.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { BranchesComponent } from './branches/branches.component';
     FooterComponent,
     HomeComponent,
     LoansComponent,
-    BranchesComponent
+    BranchesComponent,
+    AccountsComponent
   ],
   imports: [
     BrowserModule,

@@ -6,6 +6,7 @@ import { CardsComponent } from './cards/cards.component';
 import { HomeComponent } from './home/home.component';
 import { LayoutComponent } from './layout/layout.component';
 import { LoansComponent } from './loans/loans.component';
+import { AccountsComponent } from './accounts/accounts.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,10 @@ const routes: Routes = [
       {
         path: 'cashmoney/admin/home',
         component: HomeComponent,
+      },
+      {
+        path: 'cashmoney/admin/accounts',
+        component: AccountsComponent,
       },
       {
         path: 'cashmoney/admin/cards',
