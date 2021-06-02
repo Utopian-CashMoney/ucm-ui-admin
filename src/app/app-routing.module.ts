@@ -26,7 +26,7 @@ const routes: Routes = [
         component: CardsComponent,
       },
       {
-        path: 'cashmoney/admin/loans/view',
+        path: 'cashmoney/admin/loans',
         component: LoansComponent,
       },
       {
