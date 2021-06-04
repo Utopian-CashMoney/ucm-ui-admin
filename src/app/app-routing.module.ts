@@ -1,10 +1,11 @@
 import { HtmlParser } from '@angular/compiler';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ViewCardsComponent } from './cards/view-cards/view-cards.component';
+import { BranchesComponent } from './branches/branches.component';
+import { CardsComponent } from './cards/cards.component';
 import { HomeComponent } from './home/home.component';
 import { LayoutComponent } from './layout/layout.component';
-import { ViewLoansComponent } from './loans/view-loans/view-loans.component';
+import { LoansComponent } from './loans/loans.component';
 
 const routes: Routes = [
   {
@@ -21,12 +22,16 @@ const routes: Routes = [
         component: HomeComponent,
       },
       {
-        path: 'cashmoney/admin/cards/view',
-        component: ViewCardsComponent,
+        path: 'cashmoney/admin/cards',
+        component: CardsComponent,
       },
       {
-        path: 'cashmoney/admin/loans/view',
-        component: ViewLoansComponent,
+        path: 'cashmoney/admin/loans',
+        component: LoansComponent,
+      },
+      {
+        path: 'cashmoney/admin/branches',
+        component: BranchesComponent,
       },
     ]
   }
