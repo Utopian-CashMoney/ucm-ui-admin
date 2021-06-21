@@ -10,38 +10,28 @@ export class AccountsComponent implements OnInit {
   constructor(private httpService: HttpService) { }
   accounts: any;
   userAccounts: any;
-  openUserAccountNum: any[][] = [];
   totalAccounts = 0;
+  totalUserAccounts = 0;
 
   ngOnInit(): void {
+    this.loadAllAccountTypes();
     this.loadAllAccounts();
-    this.findNumberOfOpenAccounts();
   }
 
-  loadAllAccounts() {
+  loadAllAccountTypes() {
     this.httpService
       .getAll('http://localhost:8080/api/accounts')
       .subscribe((res) => {
         this.accounts = res;
         this.totalAccounts = this.accounts.length;
-
       });
   }
 
-  findNumberOfOpenAccounts() {
+  loadAllAccounts() {
     this.httpService
-      .getAll('http://localhost:8080/api/user_account')
-      .subscribe((res) => {
-        this.userAccounts = res;
-
-        this.accounts.forEach(a => {
-          var totalOpenAccounts = 0;
-          this.userAccounts.forEach(u => {
-            if (u.account.id == a.id)
-              totalOpenAccounts++;
-          })
-          this.openUserAccountNum.push([a.id, totalOpenAccounts]);
-        });
-      });
-  }
-}
+    .getAll('http://localhost:8080/api/user_account')
+    .subscribe((response) => {
+      this.userAccounts = response;
+      this.totalUserAccounts = this.userAccounts.length;
+    });
+}}
