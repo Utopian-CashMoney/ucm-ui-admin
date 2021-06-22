@@ -1,7 +1,7 @@
-<div class="container">
-    <h3>Users</h3>
-    <h5>Total users: {{ totalUsers }}</h5>
-    <table class="table">
+<div class="container mt-5">
+  <h3>Users</h3>
+  <table class="table table-hover table-responsive-md">
+      <caption>{{ totalUsers }} users found</caption>
       <thead>
         <tr>
           <th scope="col">Id</th>
@@ -16,10 +16,10 @@
         <tr *ngFor="let u of users">
           <td>{{ u.id }}</td>
           <td>{{ u.username }}</td>
-          <td> {{ u.lastName }}, {{ u.firstName }}</td>
+          <td>{{ u.lastName }}, {{ u.firstName }}</td>
           <td>{{ u.email }}</td>
           <td>{{ u.phNum }}</td>
-          <td>{{ u.isActive == true ? "YES" : "NO" }}</td>
+          <td>{{ u.isActive == true ? 'O' : 'X' }}</td>
           <td><button type="button" class="btn btn-primary btn-sm">Edit</button></td>
         </tr>
       </tbody>
