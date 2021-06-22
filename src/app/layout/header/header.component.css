@@ -1,0 +1,7 @@
+/* The sidebar menu */
+.nav {
+    height: 100%; /* 100% Full-height */
+    width: 100%; /* 0 width - change this with */
+    z-index: 1; /* Stay on top */
+    padding-top: 10px; /* Place content 60px from the top */
+}
