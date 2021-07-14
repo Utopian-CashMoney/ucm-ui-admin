@@ -13,9 +13,10 @@ import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxPopper } from 'angular-popper';
 import { LoansComponent } from './loans/loans.component';
-import { ViewCardsComponent } from './cards/view-cards/view-cards.component';
-import { ViewLoansComponent } from './loans/view-loans/view-loans.component';
 import { HttpService } from './shared/services/http.service';
+import { BranchesComponent } from './branches/branches.component';
+import { AccountsComponent } from './accounts/accounts.component';
+import { UsersComponent } from './users/users.component';
 
 @NgModule({
   declarations: [
@@ -26,8 +27,9 @@ import { HttpService } from './shared/services/http.service';
     FooterComponent,
     HomeComponent,
     LoansComponent,
-    ViewCardsComponent,
-    ViewLoansComponent
+    BranchesComponent,
+    AccountsComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,
