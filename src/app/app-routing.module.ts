@@ -8,6 +8,8 @@ import { LayoutComponent } from './layout/layout.component';
 import { LoansComponent } from './loans/loans.component';
 import { AccountsComponent } from './accounts/accounts.component';
 import { UsersComponent } from './users/users.component';
+import { CreateLoanComponent } from './loans/createloans.component';
+
 
 const routes: Routes = [
   {
@@ -42,6 +44,10 @@ const routes: Routes = [
       {
         path: 'cashmoney/admin/branches',
         component: BranchesComponent,
+      },
+      {
+        path: 'cashmoney/admin/createLoans',
+        component: CreateLoanComponent,
       },
     ]
   }

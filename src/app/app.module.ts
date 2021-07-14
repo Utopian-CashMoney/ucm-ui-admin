@@ -17,6 +17,7 @@ import { HttpService } from './shared/services/http.service';
 import { BranchesComponent } from './branches/branches.component';
 import { AccountsComponent } from './accounts/accounts.component';
 import { UsersComponent } from './users/users.component';
+import { CreateLoanComponent } from './loans/createloans.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { UsersComponent } from './users/users.component';
     LoansComponent,
     BranchesComponent,
     AccountsComponent,
-    UsersComponent
+    UsersComponent,
+    CreateLoanComponent,
   ],
   imports: [
     BrowserModule,

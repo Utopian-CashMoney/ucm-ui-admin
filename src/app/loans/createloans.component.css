@@ -1,0 +1,40 @@
+.createLoan {
+    padding-left: 600px;
+}
+
+.label {
+    padding-top: 50px;
+    padding-left: 350px;
+}
+
+.submit {
+    margin: 20px -50px; 
+    position:relative;
+    top:50%; 
+    left:50%;
+    width: 80px;  
+    height: 30px;  
+    border: 2px solid rgb(52, 240, 46);  
+    display: flex;  
+    justify-content: center;  
+    align-items: center;  
+}
+
+.textBox {
+    width: 30%;
+    border: 2px inset #5e5d6d;
+}
+
+.textBoxCenter {
+    padding-left: 350px;
+}
+
+@container (min-width: 400px){
+    .card {
+    }
+  }
+
+  .containerBorder {
+    border: 5px solid;
+    background-color: #d8ebf0;
+  }
