@@ -18,6 +18,9 @@ import { BranchesComponent } from './branches/branches.component';
 import { AccountsComponent } from './accounts/accounts.component';
 import { UsersComponent } from './users/users.component';
 import { CreateLoanComponent } from './loans/createloans.component';
+import { CreateCardComponent } from './cards/createCard.component';
+import {ReactiveFormsModule} from '@angular/forms'
+
 
 @NgModule({
   declarations: [
@@ -32,6 +35,7 @@ import { CreateLoanComponent } from './loans/createloans.component';
     AccountsComponent,
     UsersComponent,
     CreateLoanComponent,
+    CreateCardComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,6 +43,7 @@ import { CreateLoanComponent } from './loans/createloans.component';
     FormsModule,
     NgbModule,
     NgxPopper,
+    ReactiveFormsModule,
     HttpClientModule
   ],
   providers: [HttpService],

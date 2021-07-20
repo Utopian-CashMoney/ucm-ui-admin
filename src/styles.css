@@ -9948,3 +9948,15 @@ h3 {
   display: inline-block;
   font-size: 10px;
 }
+
+.addCardButton {
+  background-color: #4CAF50; /* Green */
+  margin-left: 150px;
+  border: none;
+  color: rgb(255, 255, 255);
+  padding: 10px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 10px;
+}
