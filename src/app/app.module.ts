@@ -18,6 +18,11 @@ import { BranchesComponent } from './branches/branches.component';
 import { AccountsComponent } from './accounts/accounts.component';
 import { UsersComponent } from './users/users.component';
 import { CreateLoanComponent } from './loans/createloans.component';
+import { CreateCardComponent } from './cards/createCard.component';
+import {ReactiveFormsModule} from '@angular/forms'
+import { ConfirmDialogComponent } from './confirmDialog/confirmDialog.component';
+import { ConfirmDialogService } from './confirmDialog/confirmDialogService.service';
+
 
 @NgModule({
   declarations: [
@@ -32,6 +37,8 @@ import { CreateLoanComponent } from './loans/createloans.component';
     AccountsComponent,
     UsersComponent,
     CreateLoanComponent,
+    CreateCardComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -39,9 +46,11 @@ import { CreateLoanComponent } from './loans/createloans.component';
     FormsModule,
     NgbModule,
     NgxPopper,
-    HttpClientModule
+    ReactiveFormsModule,
+    HttpClientModule,
   ],
-  providers: [HttpService],
+
+  providers: [HttpService, ConfirmDialogService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

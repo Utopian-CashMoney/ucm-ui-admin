@@ -10,9 +10,6 @@
     width: 80px;  
     height: 30px;  
     border: 2px solid rgb(52, 240, 46);  
-    display: flex;  
-    justify-content: center;  
-    align-items: center;  
 }
 
 .label {
@@ -55,7 +52,7 @@
   .CstButtonReset {
     background-color: #eed202;
     position:relative;
-    left: 660px; 
+    left:650px;
     width:100px;  
     height:40px; 
   }
@@ -91,7 +88,12 @@
 
   .boxclose:before {
     content: "×";
-
 }
 
+  .selector {
+    position: relative;
+    left: 420px;
+    height: 28px;
+    width: 130px;
+  }
   
