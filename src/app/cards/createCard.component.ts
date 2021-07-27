@@ -2,12 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { HttpService } from 'src/app/shared/services/http.service';
 import { Router } from '@angular/router';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ConfirmDialogService } from '../confirmDialog/confirmDialogService.service';
 
 import {NgForm} from '@angular/forms';
 
 
 @Component({
-    selector: 'app-branches',
+    selector: 'app-cards',
     templateUrl: './createCard.component.html',
     styleUrls: ['./createCard.component.css']
 })
@@ -16,8 +17,11 @@ export class CreateCardComponent implements OnInit {
 
     form: FormGroup;
     submitted = false;
+    result: string = '';
 
-    constructor(private httpService: HttpService ,private router: Router, private fb: FormBuilder) { 
+
+    constructor(private httpService: HttpService ,private router: Router, private fb: FormBuilder,
+      private ConfirmDialogService: ConfirmDialogService) { 
     
     }
 
@@ -44,6 +48,7 @@ export class CreateCardComponent implements OnInit {
       }
 
     onSubmit() {
+      
         this.submitted = true;
         
         if(!this.form.errors && this.form.valid){
@@ -55,6 +60,25 @@ export class CreateCardComponent implements OnInit {
         }
 
     }
+
+    public openConfirmationDialog() {
+
+      const cardType = JSON.stringify(this.form.value.type).replace(/\"/g, "");  
+      const cardName = JSON.stringify(this.form.value.name).replace(/\"/g, "");  
+      const cardAPR = JSON.stringify(this.form.value.apr).replace(/\"/g, "");  
+      const cardPerks = JSON.stringify(this.form.value.perks).replace(/\"/g, "");  
+
+   
+      this.ConfirmDialogService.confirm('Please confirm..', 'Do you want to go ahead and create the card with ' + 'card type "' + cardType +
+      '", name of the card being "' + cardName + '", APR of ' + cardAPR + '% and ' + 'perks being: ' + cardPerks)      
+      .then((confirmed) => {
+           if (confirmed) {
+             this.onSubmit();
+           }
+         })
+         .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
+   
+     }
 
 
 }

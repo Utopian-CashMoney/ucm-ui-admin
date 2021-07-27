@@ -10,7 +10,7 @@ import { AccountsComponent } from './accounts/accounts.component';
 import { UsersComponent } from './users/users.component';
 import { CreateLoanComponent } from './loans/createloans.component';
 import { CreateCardComponent } from './cards/createCard.component';
-
+import { ConfirmDialogComponent } from './confirmDialog/confirmDialog.component';
 
 
 const routes: Routes = [
@@ -54,6 +54,10 @@ const routes: Routes = [
       {
         path: 'cashmoney/admin/create_card',
         component: CreateCardComponent,
+      },
+      {
+        path: 'cashmoney/admin/confirm_loan',
+        component: ConfirmDialogComponent,
       },
     ]
   }

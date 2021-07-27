@@ -49,23 +49,15 @@
     top:50%; 
     left:40%;
     width: 100px;  
-    height: 40px;  
-    display: flex;  
-    justify-content: center;  
-    align-items: center;  
+    height: 40px;   
   }
 
   .CstButtonReset {
-    margin: 15px -40px; 
     background-color: #eed202;
-    position:absolute;
-    top:87%; 
-    left:50%;
-    width: 100px;  
-    height: 40px;  
-    display: flex;  
-    justify-content: center;  
-    align-items: center;  
+    position:relative;
+    left: 660px; 
+    width:100px;  
+    height:40px; 
   }
   
   input.ng-invalid{
@@ -79,3 +71,27 @@
   .error {
       color: red;
   }
+
+  a.boxclose{
+    position: absolute;
+    top: 50px;
+    left: 30px;
+    cursor:pointer;
+    color: rgb(241, 11, 11);
+    border: 1px solid #131111;
+    border-radius: 30px;
+    background: #605F61;
+    font-size: 31px;
+    font-weight: bold;
+    display: inline-block;
+    line-height: 0px;
+    padding: 11px 3px;       
+}
+
+
+  .boxclose:before {
+    content: "×";
+
+}
+
+  

@@ -33,12 +33,13 @@
   </div> -->
 
 
-  <div class="register-form">
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
-      <h1 class="createCard">Create Card</h1><br>
-      <div class="card" class="containerBorder">
+<div class="register-form">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <h1 class="createCard">Create Card</h1><br>
+    <div class="card" class="containerBorder">
+
       <div class="form-group"><br>
-        <label class="label">Type (Credit/Debit):</label>
+        <!-- <label class="label">Type (Credit/Debit):</label>
         <input
           type="text"
           formControlName="type"
@@ -46,80 +47,73 @@
           class="textBox"
           ngModel pattern="^[a-zA-Z]+$"
           [ngClass]="{ 'is-invalid': submitted && f.type.errors }"
-        >
+        > -->
+
+
+
+        <label class="label" for="type">Choose a card type*</label>
+
+        <select name="type" id="type" formControlName="type" class="form-control" class="selector" ngModel [ngClass]="{ 'is-invalid': submitted && f.type.errors }">
+          <option value="credit">Credit</option>
+          <option value="debit">Debit</option>
+        </select>
+
         <div *ngIf="submitted && f.type.errors" class="invalid-feedback">
           <div *ngIf="f.type.errors.required" class="label">Type is required</div>
           <div *ngIf="f.type.errors?.pattern" class="label">
             Type is not valid.
-       </div>
+          </div>
         </div>
       </div>
 
       <div class="form-group">
-        <label class="label">Name of the card:</label>
-        <input
-          type="text"
-          formControlName="name"
-          class="form-control"
-          class="textBox"
-          ngModel pattern="^[a-zA-Z]+$"
-          [ngClass]="{ 'is-invalid': submitted && f.name.errors }"
-        >
+        <label class="label">Name of the card*</label>
+        <input type="text" formControlName="name" class="form-control" class="textBox" ngModel pattern="^[a-zA-Z]+$"
+          [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
         <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
           <div *ngIf="f.name.errors.required" class="label">Name is required</div>
           <div *ngIf="f.name.errors?.pattern" class="label">
             Name is not valid.
-       </div>
+          </div>
         </div>
       </div>
-  
-  
+
+
       <div class="form-group">
-        <label class="label">APR (%):</label>
-        <input
-          type="text"
-          formControlName="apr"
-          class="form-control"
-          class="textBox"
-          ngModel pattern="^^[1-9]\d*(\.\d+)?$"
-          [ngClass]="{ 'is-invalid': submitted && f.apr.errors }"
-        >
+        <label class="label">APR (%)*</label>
+        <input type="text" formControlName="apr" class="form-control" class="textBox" ngModel
+          pattern="^^[1-9]\d*(\.\d+)?$" [ngClass]="{ 'is-invalid': submitted && f.apr.errors }">
         <div *ngIf="submitted && f.apr.errors" class="invalid-feedback">
           <div *ngIf="f.apr.errors.required" class="label">APR is required</div>
           <div *ngIf="f.apr.errors.apr" class="label">APR is invalid</div>
           <div *ngIf="f.apr.errors?.pattern" class="label">
             APR is not valid.
-       </div>
+          </div>
         </div>
       </div>
-  
+
       <div class="form-group">
-        <label class="label">Perks: </label>
-        <textarea
-          type="text"
-          formControlName="perks"
-          class="form-control"
-          class="textBox"
-          [ngClass]="{ 'is-invalid': submitted && f.perks.errors }"
-        >
+        <label class="label">Perks* </label>
+        <textarea type="text" formControlName="perks" class="form-control" class="textBox"
+          [ngClass]="{ 'is-invalid': submitted && f.perks.errors }">
         </textarea>
         <div *ngIf="submitted && f.perks.errors" class="invalid-feedback">
           <div *ngIf="f.perks.errors.required " class="label">Perks is required</div>
         </div>
       </div><br>
-  
-  
+
+
       <div class="form-group">
-        <button data-dismiss="modal" type="submit" class="btn btn-primary" class="CstButtonRegister">Register</button>
-        <button
-          type="button"
-          (click)="onReset()"
-          class="btn btn-warning float-right"
-          class="CstButtonReset"
-        >
+        <button (click)="openConfirmationDialog()" type="button" class="btn btn-primary"
+          class="CstButtonRegister">Register</button>
+
+        <button type="button" (click)="onReset()" class="btn btn-warning float-right" class="CstButtonReset">
           Reset
         </button>
+
+        <a href="#" class="boxclose" id="boxclose"></a>
+
       </div>
-      </div>
-    </form>
-  </div>
+    </div>
+  </form>
+</div>

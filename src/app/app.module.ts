@@ -20,6 +20,8 @@ import { UsersComponent } from './users/users.component';
 import { CreateLoanComponent } from './loans/createloans.component';
 import { CreateCardComponent } from './cards/createCard.component';
 import {ReactiveFormsModule} from '@angular/forms'
+import { ConfirmDialogComponent } from './confirmDialog/confirmDialog.component';
+import { ConfirmDialogService } from './confirmDialog/confirmDialogService.service';
 
 
 @NgModule({
@@ -36,6 +38,7 @@ import {ReactiveFormsModule} from '@angular/forms'
     UsersComponent,
     CreateLoanComponent,
     CreateCardComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -44,9 +47,10 @@ import {ReactiveFormsModule} from '@angular/forms'
     NgbModule,
     NgxPopper,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
-  providers: [HttpService],
+
+  providers: [HttpService, ConfirmDialogService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
