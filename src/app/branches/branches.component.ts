@@ -17,7 +17,7 @@ export class BranchesComponent implements OnInit {
 
   loadAllBranches() {
     this.httpService
-    .getAll('http://localhost:8080/api/branches')
+    .getAll('http://localhost:8010/api/branches')
       .subscribe((res) => {
         this.branches = res;
         this.totalBranches = this.branches.length;
