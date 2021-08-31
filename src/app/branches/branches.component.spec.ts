@@ -1,11 +1,11 @@
-import { ComponentFixture, getTestBed, TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { HttpClientModule } from '@angular/common/http';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { BranchesComponent } from './branches.component';
 
 describe('BranchesComponent', () => {
   let component: BranchesComponent;
   let fixture: ComponentFixture<BranchesComponent>;
+  let spy: any;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -23,5 +23,11 @@ describe('BranchesComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should attempt to load all branches in database', () => {
+    spy = spyOn(component, 'loadAllBranches');
+    component.loadAllBranches();
+    expect(spy).toHaveBeenCalled();
   });
 });

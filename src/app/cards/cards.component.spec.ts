@@ -1,11 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { CardsComponent } from './cards.component';
 
 describe('CardsComponent', () => {
   let component: CardsComponent;
   let fixture: ComponentFixture<CardsComponent>;
+  let spy: any;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -23,5 +23,11 @@ describe('CardsComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should attempt to load all cards in database', () => {
+    spy = spyOn(component, 'loadAllCards');
+    component.loadAllCards();
+    expect(spy).toHaveBeenCalled();
   });
 });

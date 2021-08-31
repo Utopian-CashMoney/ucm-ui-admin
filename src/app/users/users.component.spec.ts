@@ -1,13 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { HttpClientModule } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
-import { Router } from '@angular/router';
 import { UsersComponent } from './users.component';
 
 describe('UsersComponent', () => {
   let component: UsersComponent;
   let fixture: ComponentFixture<UsersComponent>;
+  let spy: any;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -25,5 +24,11 @@ describe('UsersComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should attempt to load all users in database', () => {
+    spy = spyOn(component, 'loadAllUsers');
+    component.loadAllUsers();
+    expect(spy).toHaveBeenCalled();
   });
 });
