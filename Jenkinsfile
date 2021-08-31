@@ -8,8 +8,7 @@ pipeline {
     stages {
         stage('Git Pull') {
             steps {
-                // Get some code from a GitHub repository
-                git branch: 'cloud-developer', url: 'https://github.com/Utopian-CashMoney/ucm-ui-admin.git'
+                echo 'Branch: ' + env.BRANCH_NAME
             }
         }
         
