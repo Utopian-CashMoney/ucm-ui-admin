@@ -1,0 +1,23 @@
+h1 {
+    color: rgb(0, 215, 255);
+}
+
+.card {
+    color: white !important;
+    background-color: rgb(0, 215, 255) !important;
+    transition: color .75s, background-color .75s; /* Animation */
+}
+
+.card > a:hover{
+    color: rgb(0, 215, 255) !important;
+    background-color: white !important;
+    transition: color .4s, background-color .4s; /* Animation */
+}
+
+a:link, a:visited, a:active { 
+    text-decoration: none; 
+    color: white;
+    transition: color .4s; /* Animation */
+}
+
+a:hover { text-decoration: none; }
