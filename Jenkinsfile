@@ -18,7 +18,7 @@ pipeline {
                     scannerHome = tool 'SonarQube Scanner 4.6'
                 }
                 withSonarQubeEnv('SonarQube Scanner') {
-                    sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=dev-ucm-adminui -Dsonar.sources=. -Dsonar.host.url=http://ec2-52-55-57-2.compute-1.amazonaws.com:81 -Dsonar.login=4ff6332346478c38e87a3d2727087174e70b913a"
+                    sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=ucm-admin-ui -Dsonar.sources=. -Dsonar.host.url=http://52.55.57.2:81 -Dsonar.login=75b0a4edafa1e19151b1e21e07f411e55af77e67 -Dsonar.branch.name=" + env.BRANCH_NAME
                 }
             }
         }
@@ -38,7 +38,7 @@ pipeline {
                     // Install community.aws ansible packages
                     sh 'ansible-galaxy collection install community.aws'
                     // Push to S3 Bucket
-                    sh 'ansible-playbook playbooks/UploadPlaybook.yaml -e ENV=dev'
+                    sh 'ansible-playbook playbooks/UploadPlaybook.yaml -e ENV=' + env.BRANCH_NAME
                 }
             }
         }
