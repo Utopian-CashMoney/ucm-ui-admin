@@ -6,19 +6,13 @@ pipeline {
     }
 
     stages {
-        stage('Git Pull') {
-            steps {
-                echo 'Branch: ' + env.BRANCH_NAME
-            }
-        }
-        
         stage('SonarQube analysis') {
             steps {
                 script {
                     scannerHome = tool 'SonarQube Scanner 4.6'
                 }
                 withSonarQubeEnv('SonarQube Scanner') {
-                    sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=ucm-admin-ui -Dsonar.sources=. -Dsonar.host.url=http://52.55.57.2:81 -Dsonar.login=75b0a4edafa1e19151b1e21e07f411e55af77e67 -Dsonar.branch.name=" + env.BRANCH_NAME
+                    sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=ucm-admin-ui -Dsonar.sources=. -Dsonar.host.url=http://52.55.57.2:81 -Dsonar.login=75b0a4edafa1e19151b1e21e07f411e55af77e67"// -Dsonar.branch.name=" + env.BRANCH_NAME
                 }
             }
         }
