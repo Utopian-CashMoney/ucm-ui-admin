@@ -12,12 +12,22 @@ export class CardsComponent implements OnInit {
   totalCards = 0;
 
   ngOnInit(): void {
-    this.loadAllCards();
+    this.loadAllCreditCards();
+    this.loadAllDebitCards();
   }
 
-  loadAllCards() {
+  loadAllCreditCards() {
     this.httpService
-    .getAll('http://localhost:8080/api/cards')
+    .getAll('http://localhost:8080/api/creditcards')
+      .subscribe((res) => {
+        this.cards = res;
+        this.totalCards = this.cards.length;
+      });
+  }
+
+  loadAllDebitCards() {
+    this.httpService
+    .getAll('http://localhost:8080/api/debitcards')
       .subscribe((res) => {
         this.cards = res;
         this.totalCards = this.cards.length;
