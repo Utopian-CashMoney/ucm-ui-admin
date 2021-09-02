@@ -1,19 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, setTestabilityGetter } from '@angular/core';
 import { HttpService } from 'src/app/shared/services/http.service';
+import { Title } from "@angular/platform-browser";
 
 @Component({
   selector: 'app-accounts',
   templateUrl: './accounts.component.html',
   styleUrls: ['./accounts.component.css']
 })
+
 export class AccountsComponent implements OnInit {
-  constructor(private httpService: HttpService) { }
+  constructor(private httpService: HttpService, private title: Title) { }
   accounts: any;
   userAccounts: any;
   totalAccounts = 0;
   totalUserAccounts = 0;
-
+  
   ngOnInit(): void {
+    this.title.setTitle('Accounts');
     this.loadAllAccountTypes();
     this.loadAllAccounts();
   }
