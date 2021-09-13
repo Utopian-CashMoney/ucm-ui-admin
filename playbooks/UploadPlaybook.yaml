@@ -3,20 +3,27 @@
 - name: Build and Upload Admin Frontend to S3 Bucket
   hosts: localhost
 
+  vars:
+    bucket_name: ucm-{{ ENV }}-ui-admin
+    aws_region: us-east-1
+
   tasks:
     - name: Create S3 bucket if it doesn't exist
       amazon.aws.aws_s3:
-        bucket: ucm-{{ ENV }}-ui-admin
+        bucket: '{{ bucket_name }}'
+        region: '{{ aws_region }}'
         mode: create
         permission: public-read
     - name: Configure S3 bucket to static website
       s3_website:
-        name: ucm-{{ ENV }}-ui-admin
+        name: '{{ bucket_name }}'
+        region: '{{ aws_region }}'
         suffix: index.html
         state: present
     - name: Upload admin frontend to S3 bucket
       community.aws.s3_sync:
-        bucket: ucm-{{ ENV }}-ui-admin
+        bucket: '{{ bucket_name }}'
+        region: '{{ aws_region }}'
         file_root: ../dist/admin-ui
         permission: public-read
         include: "*"
