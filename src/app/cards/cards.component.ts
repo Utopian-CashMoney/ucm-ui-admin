@@ -8,8 +8,10 @@ import { HttpService } from 'src/app/shared/services/http.service';
 })
 export class CardsComponent implements OnInit {
   constructor(private httpService: HttpService) { }
-  cards: any;
-  totalCards = 0;
+  creditCards: any;
+  debitCards: any;
+  totalCredit = 0;
+  totalDebit = 0;
 
   ngOnInit(): void {
     this.loadAllCreditCards();
@@ -20,8 +22,8 @@ export class CardsComponent implements OnInit {
     this.httpService
     .getAll('http://localhost:8081/api/creditcards')
       .subscribe((res) => {
-        this.cards = res;
-        this.totalCards = this.cards.length;
+        this.creditCards = res;
+        this.totalCredit = this.creditCards.length;
       });
   }
 
@@ -29,8 +31,8 @@ export class CardsComponent implements OnInit {
     this.httpService
     .getAll('http://localhost:8081/api/debitcards')
       .subscribe((res) => {
-        this.cards = res;
-        this.totalCards = this.cards.length;
+        this.debitCards = res;
+        this.totalDebit = this.debitCards.length;
       });
   }
 }
