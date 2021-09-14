@@ -34,7 +34,7 @@
               <td>{{ d.userAccount.user.lastName }}, {{ d.userAccount.user.firstName }}</td>
               <td>{{ d.userAccount.accountNumber }}</td>
               <td>{{ d.userAccount.accountType.name }}</td>
-              <td>${{ d.userAccount.balance }}</td>
+              <td>${{ d.userAccount.balance }}</td>   <!--NEED TO CHANGE TO STANDARD MONEY OUTPUT-->
               <td>{{ d.expirationDate }}</td>
               <td><button type="button" class="btn btn-primary btn-sm"><svg xmlns="http://www.w3.org/2000/svg"
                 width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
@@ -58,6 +58,7 @@
               <th scope="col">Account Number</th>
               <th scope="col">Account Type</th>
               <th scope="col">Balance</th>
+              <th scope="col">APR</th>
               <th scope="col">Expiration</th>
               <th scope="col"></th>
             </tr>
@@ -68,7 +69,8 @@
               <td>{{ c.userAccount.user.lastName }}, {{ c.userAccount.user.firstName }}</td>
               <td>{{ c.userAccount.accountNumber }}</td>
               <td>{{ c.userAccount.accountType.name }}</td>
-              <td>${{ c.userAccount.balance }}</td>
+              <td>${{ c.userAccount.balance }}</td>   <!--NEED TO CHANGE TO STANDARD MONEY OUTPUT-->
+              <td>{{ c.interestRate }}</td>           <!--NEED TO CHANGE TO PERCENTAGE-->
               <td>{{ c.expirationDate }}</td>
               <td><button type="button" class="btn btn-primary btn-sm"><svg xmlns="http://www.w3.org/2000/svg"
                 width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
