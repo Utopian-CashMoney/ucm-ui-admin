@@ -20,7 +20,7 @@ export class AccountsComponent implements OnInit {
 
   loadAllAccountTypes() {
     this.httpService
-      .getAll('http://localhost:8080/api/accounts')
+      .getAll('http://localhost:8081/api/accounts')
       .subscribe((res) => {
         this.accounts = res;
         this.totalAccounts = this.accounts.length;
@@ -29,7 +29,7 @@ export class AccountsComponent implements OnInit {
 
   loadAllAccounts() {
     this.httpService
-    .getAll('http://localhost:8080/api/user_account')
+    .getAll('http://localhost:8081/api/user_account')
     .subscribe((response) => {
       this.userAccounts = response;
       this.totalUserAccounts = this.userAccounts.length;

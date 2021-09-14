@@ -18,7 +18,7 @@ export class CardsComponent implements OnInit {
 
   loadAllCreditCards() {
     this.httpService
-    .getAll('http://localhost:8080/api/creditcards')
+    .getAll('http://localhost:8081/api/creditcards')
       .subscribe((res) => {
         this.cards = res;
         this.totalCards = this.cards.length;
@@ -27,7 +27,7 @@ export class CardsComponent implements OnInit {
 
   loadAllDebitCards() {
     this.httpService
-    .getAll('http://localhost:8080/api/debitcards')
+    .getAll('http://localhost:8081/api/debitcards')
       .subscribe((res) => {
         this.cards = res;
         this.totalCards = this.cards.length;

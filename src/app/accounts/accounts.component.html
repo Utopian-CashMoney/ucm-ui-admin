@@ -61,10 +61,10 @@
         <tbody>
           <tr *ngFor="let u of userAccounts; let i = index">
             <td>{{ u.accountNumber }}</td>
-            <td>{{ u.account.name }}</td>
+            <td>{{ u.accountType.name }}</td>
             <td>{{ u.user.username }}</td>
             <td>{{ u.user.lastName }}, {{ u.user.firstName }}</td>
-            <td>{{ u.balance }}</td>
+            <td>${{ u.balance }}</td>
             <td>{{ u.active == true ? "ACTIVE" : "INACTIVE"}}</td>
             <td><button type="button" class="btn btn-primary btn-sm"><svg xmlns="http://www.w3.org/2000/svg"
                   width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
