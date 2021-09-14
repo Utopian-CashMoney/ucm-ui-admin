@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from 'src/app/shared/services/http.service';
+import { DashboardDataService } from '../shared/services/dashboarddata.service';
 
 @Component({
   selector: 'app-branches',
@@ -17,10 +18,14 @@ export class BranchesComponent implements OnInit {
 
   loadAllBranches() {
     this.httpService
-    .getAll('http://localhost:8080/api/branches')
+    .getAll('http://localhost:8010/api/branches')
       .subscribe((res) => {
         this.branches = res;
         this.totalBranches = this.branches.length;
       });
+  }
+
+  getNumBranches() {
+    return this.totalBranches;
   }
 }
