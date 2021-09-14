@@ -8,10 +8,14 @@ h1 {
     transition: color .75s, background-color .75s; /* Animation */
 }
 
-.card > a:hover{
+.card > a:hover {
     color: rgb(0, 215, 255) !important;
     background-color: white !important;
     transition: color .4s, background-color .4s; /* Animation */
+}
+
+.card-text {
+    font-size: x-large;
 }
 
 a:link, a:visited, a:active { 
