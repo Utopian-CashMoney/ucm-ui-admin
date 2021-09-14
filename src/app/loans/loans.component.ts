@@ -30,7 +30,7 @@ export class LoansComponent implements OnInit {
 
   loadAllLoans() {
     this.httpService
-    .getAll('http://localhost:8081/loans')
+    .getAll('http://localhost:8020/api/loans')
       .subscribe((res) => {
         this.loans = res;
         this.totalLoans = this.loans.length;

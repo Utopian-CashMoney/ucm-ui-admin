@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from 'src/app/shared/services/http.service';
-import { DashboardDataService } from '../shared/services/dashboarddata.service';
 
 @Component({
   selector: 'app-branches',
