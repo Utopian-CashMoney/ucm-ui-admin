@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from 'src/app/shared/services/http.service';
+import { Title } from "@angular/platform-browser";
 
 @Component({
   selector: 'app-home',
@@ -7,7 +8,7 @@ import { HttpService } from 'src/app/shared/services/http.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  constructor(private httpService: HttpService) { }
+  constructor(private httpService: HttpService, private title: Title) { }
   username: string = "Admin"; //Hardcoded until admin login is implemented
   temp: any;
   totalUsers = 0;
@@ -18,6 +19,7 @@ export class HomeComponent implements OnInit {
   totalBranches = 0;
 
   ngOnInit(): void {
+    this.title.setTitle('Dashboard');
     this.loadTotals();
   }
 

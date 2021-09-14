@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from 'src/app/shared/services/http.service';
+import { Title } from "@angular/platform-browser";
 
 @Component({
   selector: 'app-branches',
@@ -7,11 +8,12 @@ import { HttpService } from 'src/app/shared/services/http.service';
   styleUrls: ['./branches.component.css']
 })
 export class BranchesComponent implements OnInit {
-  constructor(private httpService: HttpService) { }
+  constructor(private httpService: HttpService, private title: Title) { }
   branches: any;
   totalBranches = 0;
 
   ngOnInit(): void {
+    this.title.setTitle('Branches');
     this.loadAllBranches();
   }
 
@@ -22,9 +24,5 @@ export class BranchesComponent implements OnInit {
         this.branches = res;
         this.totalBranches = this.branches.length;
       });
-  }
-
-  getNumBranches() {
-    return this.totalBranches;
   }
 }

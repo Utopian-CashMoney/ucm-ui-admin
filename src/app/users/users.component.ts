@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from 'src/app/shared/services/http.service';
 import { Router } from '@angular/router';
+import { Title } from "@angular/platform-browser";
 
 
 @Component({
@@ -9,23 +10,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
-
-  // <td>{{ u.id }}</td>
-  // <td>{{ u.username }}</td>
-  // <td>{{ u.lastName }}, {{ u.firstName }}</td>
-  // <td>{{ u.email }}</td>
-  // <td>{{ u.phNum }}</td>
-  // <td>{{ u.isActive == true ? "ACTIVE" : "INACTIVE" }}</td>
-
-
-  constructor(private httpService: HttpService,  private router: Router) { }
+  constructor(private httpService: HttpService,  private router: Router, private title: Title) { }
   users: any;
   id:any;
   username:any;
   firstName:any;
   lastName:any;
   email:any;
-  password: any;
+  password:any;
   phNum:any;
   address:any;
   city:any;
@@ -36,6 +28,7 @@ export class UsersComponent implements OnInit {
   totalUsers= 0;
 
   ngOnInit(): void {
+    this.title.setTitle('Users');
     this.loadAllUsers();
   }
 

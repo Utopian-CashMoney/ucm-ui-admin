@@ -5,8 +5,8 @@
       <thead>
         <tr>
           <th scope="col">id</th>
-          <th scope="col" class="text-right">Max Amount</th>
           <th scope="col" class ="text-center">Name</th>
+          <th scope="col" class="text-right">Max Amount</th>
           <th scope="col" class="text-right">Interest Rate</th>
           <th scope="col"></th>
         </tr>
@@ -14,8 +14,8 @@
       <tbody>
         <tr *ngFor="let l of loans">
           <td>{{ l.id }}</td>
-          <td class="text-right">${{ l.maxAmount }}</td>
           <td class ="text-center">{{ l.name }}</td>
+          <td class="text-right">${{ l.maxAmount }}</td>
           <td class="text-right">{{ l.interestRate }}%</td>
           <td><button type="button" class="btn btn-primary btn-sm"><svg xmlns="http://www.w3.org/2000/svg"
             width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
