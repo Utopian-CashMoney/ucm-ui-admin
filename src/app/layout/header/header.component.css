@@ -1,0 +1,28 @@
+/* The sidebar menu */
+.sidebar-brand {
+    color: white;
+    font-family: "Brush Script MT";
+}
+
+.nav {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+    background: rgb(0, 215, 255);
+}
+
+.nav-link {
+    font-size: large;
+    color: white;
+    transition: transform .75s, color .75s, background-color .75s; /* Animation */
+}
+
+.nav > li > a:hover {
+color: rgb(0, 215, 255) !important;
+background-color: white !important;
+
+transform: scale(1.2);
+transform: translateX(20px);
+transition: transform .4s, color .4s, background-color .4s; /* Animation */
+}

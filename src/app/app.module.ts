@@ -13,9 +13,16 @@ import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxPopper } from 'angular-popper';
 import { LoansComponent } from './loans/loans.component';
-import { ViewCardsComponent } from './cards/view-cards/view-cards.component';
-import { ViewLoansComponent } from './loans/view-loans/view-loans.component';
 import { HttpService } from './shared/services/http.service';
+import { BranchesComponent } from './branches/branches.component';
+import { AccountsComponent } from './accounts/accounts.component';
+import { UsersComponent } from './users/users.component';
+import { CreateLoanComponent } from './loans/createloans.component';
+import { CreateCardComponent } from './cards/createCard.component';
+import {ReactiveFormsModule} from '@angular/forms'
+import { ConfirmDialogComponent } from './confirmDialog/confirmDialog.component';
+import { ConfirmDialogService } from './confirmDialog/confirmDialogService.service';
+import { EditUserComponent } from './users/editUser.component'; 
 
 @NgModule({
   declarations: [
@@ -26,8 +33,13 @@ import { HttpService } from './shared/services/http.service';
     FooterComponent,
     HomeComponent,
     LoansComponent,
-    ViewCardsComponent,
-    ViewLoansComponent
+    BranchesComponent,
+    AccountsComponent,
+    UsersComponent,
+    CreateLoanComponent,
+    CreateCardComponent,
+    ConfirmDialogComponent,
+    EditUserComponent
   ],
   imports: [
     BrowserModule,
@@ -35,9 +47,11 @@ import { HttpService } from './shared/services/http.service';
     FormsModule,
     NgbModule,
     NgxPopper,
-    HttpClientModule
+    ReactiveFormsModule,
+    HttpClientModule,
   ],
-  providers: [HttpService],
+
+  providers: [HttpService, ConfirmDialogService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
