@@ -36,6 +36,7 @@ import { EditUserComponent } from './users/editUser.component';
     BranchesComponent,
     AccountsComponent,
     UsersComponent,
+    CreateLoanComponent,
     CreateCardComponent,
     ConfirmDialogComponent,
     EditUserComponent
