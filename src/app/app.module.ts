@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http'
 
 import { AppRoutingModule } from './app-routing.module';
@@ -51,7 +51,7 @@ import { EditUserComponent } from './users/editUser.component';
     HttpClientModule,
   ],
 
-  providers: [HttpService, ConfirmDialogService],
+  providers: [HttpService, ConfirmDialogService, Title],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
