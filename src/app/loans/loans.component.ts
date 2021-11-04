@@ -21,7 +21,7 @@ export class LoansComponent implements OnInit {
   // Gets all the loans in the database
   loadAllLoans() {
     this.httpService
-    .getAll('http://localhost:8020/api/loans')
+    .getAll('http://localhost:8081/api/loans')
       .subscribe((res) => {
         this.loans = res;
         this.totalLoans = this.loans.length;

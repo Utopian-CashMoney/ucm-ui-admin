@@ -53,7 +53,7 @@ export class HomeComponent implements OnInit {
       });
 
       this.httpService
-      .getAll('http://localhost:8020/api/loans')
+      .getAll('http://localhost:8081/api/loans')
       .subscribe((response) => {
         this.temp = response;
         this.totalLoans = this.temp.length;
