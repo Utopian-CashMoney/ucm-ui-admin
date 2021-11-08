@@ -5,49 +5,50 @@ import { Router } from '@angular/router'
 
 
 @Component({
-    selector: 'app-editUser',
-    templateUrl: './editUser.component.html',
-    styleUrls: ['./editUser.component.css']
+    selector: 'app-addUser',
+    templateUrl: './addUser.component.html',
+    styleUrls: ['./addUser.component.css']
   })
 
-export class EditUserComponent implements OnInit {
+export class AddUserComponent implements OnInit {
 
     constructor(private httpService: HttpService, private router: Router, private fb: FormBuilder) { }
     users: any;
     id:any;
     username:any;
-    firstName:any;
-    lastName:any;
+    first_name:any;
+    last_name:any;
     email:any;
     password:any;
-    phNum:any;
+    phone:any;
     address:any;
     city:any;
     state:any;
     zipcode:any;
-    isActive:any;
-    editForm: FormGroup;
+    is_active:any;
+    errors:any;
+    addForm: FormGroup;
     submitted = false;
     result: string = '';
 
-    userId = history.state.id;
-    userUserName = history.state.username;
-    userFirstName = history.state.firstName;
-    userLastName = history.state.lastName;
-    userEmail = history.state.email;
-    userPassword = history.state.password;
-    userPhNum = history.state.phNum;
-    userAddress = history.state.address;
-    userCity = history.state.city;
-    userState = history.state.state;
-    userZipcode = history.state.zipcode;
-    userIsActive = history.state.isActive;
+    userId = '';
+    userUserName = '';
+    userFirstName = '';
+    userLastName = '';
+    userEmail = '';
+    userPassword = '';
+    userPhNum = '';
+    userAddress = '';
+    userCity = '';
+    userState = '';
+    userZipcode = '';
+    userIsActive = '';
 
 
 
     ngOnInit(): void {
 
-      this.editForm = this.fb.group({
+      this.addForm = this.fb.group({
         id:[{value: this.userId, disabled: true}, Validators.required],
 
         username: [this.userUserName, [
@@ -56,13 +57,13 @@ export class EditUserComponent implements OnInit {
             /^[a-zA-Z0-9]+([_ -]?[a-zA-Z0-9])*$/
           )
         ]],
-        firstName: [this.userFirstName, [
+        first_name: [this.userFirstName, [
           Validators.required,
           Validators.pattern(
             /^[A-Za-z]+$/
           )
         ]],
-        lastName: [this.userLastName, [
+        last_name: [this.userLastName, [
           Validators.required,
           Validators.pattern(
             /^[A-Za-z]+$/
@@ -80,7 +81,7 @@ export class EditUserComponent implements OnInit {
             /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
           )
         ]],
-        phNum: [this.userPhNum, [
+        phone: [this.userPhNum, [
           Validators.required,
           Validators.pattern(
             /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/
@@ -111,30 +112,31 @@ export class EditUserComponent implements OnInit {
             )
         ]],
 
-        isActive: [this.userIsActive, [
-          Validators.required,
+        isActive: [this.is_active, [
           Validators.pattern(
             /^[A-Za-z]{1,16}([ ]?[a-zA-Z]{0,16})([ ]?[a-zA-Z]{0,16})$/
           )
-        ]],
+        ]]
       });
 
       
     }
 
     get f(): { [key: string]: AbstractControl } {
-      return this.editForm.controls;
+      return this.addForm.controls;
     }
 
     onSubmit(form) {
       this.submitted = true;
   
-      if (!this.editForm.errors && this.editForm.valid) {
+      if (!this.addForm.errors && this.addForm.valid) {
         this.httpService
-          .post('http://localhost:8000/auth/update_user', form.getRawValue())
+          .post('http://localhost:8000/auth/signup_by_admin', form.getRawValue())
           .subscribe((res) => {
-            this.router.navigate(['cashmoney/admin/home'])
-          });
+            this.router.navigate(['cashmoney/admin/home'])    
+          }, errors => { 
+            this.errors = 'Username/Email already exits please choose a new Username/Email';
+        });
       }
 
     }

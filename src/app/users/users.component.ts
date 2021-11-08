@@ -56,6 +56,12 @@ export class UsersComponent implements OnInit {
     
   }
 
+  onAdd() {
+
+
+    this.router.navigate(['cashmoney/admin/add_user']); 
+  }
+
 
 
 }

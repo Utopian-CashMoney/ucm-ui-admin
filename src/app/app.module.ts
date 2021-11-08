@@ -23,6 +23,7 @@ import {ReactiveFormsModule} from '@angular/forms'
 import { ConfirmDialogComponent } from './confirmDialog/confirmDialog.component';
 import { ConfirmDialogService } from './confirmDialog/confirmDialogService.service';
 import { EditUserComponent } from './users/editUser.component'; 
+import { AddUserComponent } from './users/addUser.component'; 
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { EditUserComponent } from './users/editUser.component';
     CreateLoanComponent,
     CreateCardComponent,
     ConfirmDialogComponent,
-    EditUserComponent
+    EditUserComponent,
+    AddUserComponent
   ],
   imports: [
     BrowserModule,

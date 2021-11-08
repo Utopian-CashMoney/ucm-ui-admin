@@ -32,7 +32,7 @@ export class CreateCardComponent implements OnInit {
               type: ['', Validators.required],
               name: ['', Validators.required],
               apr: ['', [Validators.required]],
-              perks: ['', [Validators.required]],
+              perks: [''],
             },
           );
     }
@@ -50,6 +50,7 @@ export class CreateCardComponent implements OnInit {
     onSubmit() {
       
         this.submitted = true;
+        console.log("inside submit")
         
         if(!this.form.errors && this.form.valid){
         this.httpService

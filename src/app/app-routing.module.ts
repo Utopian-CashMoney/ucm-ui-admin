@@ -12,6 +12,8 @@ import { CreateLoanComponent } from './loans/createloans.component';
 import { CreateCardComponent } from './cards/createCard.component';
 import { ConfirmDialogComponent } from './confirmDialog/confirmDialog.component';
 import { EditUserComponent } from './users/editUser.component';
+import { AddUserComponent } from './users/addUser.component';
+
 
 
 const routes: Routes = [
@@ -63,6 +65,10 @@ const routes: Routes = [
       {
         path: 'cashmoney/admin/edit_user',
         component: EditUserComponent,
+      },
+      {
+        path: 'cashmoney/admin/add_user',
+        component: AddUserComponent,
       },
     ]
   }

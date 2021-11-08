@@ -82,7 +82,7 @@
       <div class="form-group">
         <label class="label">APR (%)*</label>
         <input type="text" formControlName="apr" class="form-control" class="textBox" ngModel
-          pattern="^^[1-9]\d*(\.\d+)?$" [ngClass]="{ 'is-invalid': submitted && f.apr.errors }">
+          pattern="^^[0-9]\d*(\.\d+)?$" [ngClass]="{ 'is-invalid': submitted && f.apr.errors }">
         <div *ngIf="submitted && f.apr.errors" class="invalid-feedback">
           <div *ngIf="f.apr.errors.required" class="label">APR is required</div>
           <div *ngIf="f.apr.errors.apr" class="label">APR is invalid</div>
@@ -98,7 +98,7 @@
           [ngClass]="{ 'is-invalid': submitted && f.perks.errors }">
         </textarea>
         <div *ngIf="submitted && f.perks.errors" class="invalid-feedback">
-          <div *ngIf="f.perks.errors.required " class="label">Perks is required</div>
+          <!-- <div *ngIf="f.perks.errors.required " class="label">Perks is required</div> -->
         </div>
       </div><br>
 
