@@ -23,19 +23,19 @@
                     <!-- Type -->
                     <div class="form-group">
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="type" id="type1" value="CREDIT" checked formControlName="type">
+                            <input class="form-check-input" type="radio" name="type" id="type1" value="CREDIT" checked formControlName="type" (click)="showCredit();">
                             <label class="form-check-label" for="exampleRadios1">
                                 Credit
                             </label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="type" id="type2" value="DEBIT" checked formControlName="type">
+                            <input class="form-check-input" type="radio" name="type" id="type2" value="DEBIT" formControlName="type" (click)="hideCredit();">
                             <label class="form-check-label" for="exampleRadios1">
                                 Debit
                             </label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="type" id="type3" value="LOAN" checked formControlName="type">
+                            <input class="form-check-input" type="radio" name="type" id="type3" value="LOAN" formControlName="type" (click)="showCredit();">
                             <label class="form-check-label" for="exampleRadios1">
                                 Loan
                             </label>
@@ -45,8 +45,8 @@
                     <div class="form-group">
                         <label class="label">Name</label>
                         <input type="text" formControlName="name" class="form-control" placeholder="Name of account type" ngModel
-                            pattern="^[a-zA-Z]+$" [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
-                        <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                            pattern="^[a-zA-Z0-9_]+( [a-zA-Z0-9_]+)*$" [ngClass]="{ 'is-invalid': inputCheck && f.name.errors }">
+                        <div *ngIf="inputCheck && f.name.errors" class="invalid-feedback">
                             <div *ngIf="f.name.errors.required" class="label">Name is required</div>
                             <div *ngIf="f.name.errors?.pattern" class="label">
                                 Name is invalid
@@ -54,38 +54,40 @@
                         </div>
                     </div>
                     <!-- Credit Limit & APR -->
-                    <div class="form-row">
-                        <div class="col-7">
-                            <label class="label">Credit Limit ($)</label>
-                            <input type="text" formControlName="creditLimit" class="form-control" placeholder="Credit limit" ngModel
-                                pattern="^^[1-9]\d*(\.\d+)?$" [ngClass]="{ 'is-invalid': submitted && f.creditLimit.errors }">
-                            <div *ngIf="submitted && f.creditLimit.errors" class="invalid-feedback">
-                                <div *ngIf="f.creditLimit.errors.required" class="label">Credit Limit is required</div>
-                                <div *ngIf="f.creditLimit.errors?.pattern" class="label">
-                                    Credit Limit is invalid
+                    <div *ngIf="displayCredit">
+                        <div class="form-row">
+                            <div class="col-7">
+                                <label class="label">Credit Limit ($)</label>
+                                <input type="text" formControlName="creditLimit" class="form-control" placeholder="Credit limit" ngModel
+                                pattern="^^[1-9]\d*(\.\d+)?$" [ngClass]="{ 'is-invalid': inputCheck && f.creditLimit.errors }">
+                                <div *ngIf="inputCheck && f.creditLimit.errors" class="invalid-feedback">
+                                    <div *ngIf="f.creditLimit.errors.required && f.type.value != 'DEBIT'" class="label">Credit Limit is required</div>
+                                    <div *ngIf="f.creditLimit.errors?.pattern" class="label">
+                                        Credit Limit is invalid
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col">
-                            <label class="label">APR (%)</label>
-                            <input type="text" formControlName="apr" class="form-control" placeholder="APR" ngModel
-                                pattern="^^[1-9]\d*(\.\d+)?$" [ngClass]="{ 'is-invalid': submitted && f.apr.errors }">
-                            <div *ngIf="submitted && f.apr.errors" class="invalid-feedback">
-                                <div *ngIf="f.apr.errors.required" class="label">APR is required</div>
-                                <div *ngIf="f.apr.errors.apr" class="label">APR is invalid</div>
-                                <div *ngIf="f.apr.errors?.pattern" class="label">
-                                    APR is invalid
+                            <div class="col">
+                                <label class="label">APR (%)</label>
+                                <input type="text" formControlName="apr" class="form-control" placeholder="APR" ngModel
+                                pattern="^^[1-9]\d*(\.\d+)?$" [ngClass]="{ 'is-invalid': inputCheck && f.apr.errors }">
+                                <div *ngIf="inputCheck && f.apr.errors" class="invalid-feedback">
+                                    <div *ngIf="f.apr.errors.required && f.type.value != 'DEBIT'" class="label">APR is required</div>
+                                    <div *ngIf="f.apr.errors.apr" class="label">APR is invalid</div>
+                                    <div *ngIf="f.apr.errors?.pattern" class="label">
+                                        APR is invalid
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div><br>
-                    <!-- Perks -->
-                    <div class="form-group">
-                        <label class="label"> Description </label>
-                        <textarea type="text" formControlName="perks" class="form-control"
+                        </div><br>
+                    </div>
+                        <!-- Perks -->
+                        <div class="form-group">
+                            <label class="label"> Description </label>
+                            <textarea type="text" formControlName="perks" class="form-control"
                             placeholder="Short description of the account type"
-                            [ngClass]="{ 'is-invalid': submitted && f.perks.errors }"></textarea>
-                        <div *ngIf="submitted && f.perks.errors" class="invalid-feedback">
+                            [ngClass]="{ 'is-invalid': inputCheck && f.perks.errors }"></textarea>
+                        <div *ngIf="inputCheck && f.perks.errors" class="invalid-feedback">
                             <div *ngIf="f.perks.errors.required " class="label">Description is required</div>
                         </div>
                     </div>
@@ -93,7 +95,7 @@
                 <!-- End Form -->
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-primary" (click)="openConfirmationDialog()">Save</button>
+                <button type="submit" class="btn btn-primary" (click)="openConfirmationDialog(); checkInput();">Save</button>
                 <button type="button" (click)="onReset()" class="btn btn-info">Reset</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
             </div>
