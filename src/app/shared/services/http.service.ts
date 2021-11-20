@@ -21,4 +21,8 @@ export class HttpService {
     return this.http.get(url, payload);
   }
 
+  delete(url){
+    return this.http.delete(url);
+  }
+
 }

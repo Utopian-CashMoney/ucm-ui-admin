@@ -65,7 +65,6 @@ export class AddTypeComponent implements OnInit {
     this.submitted = false;
     this.inputCheck = false;
     this.showCredit();
-    //this.form.controls["type"].setValue(2);
   }
 
   checkInput() {
