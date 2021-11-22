@@ -33,7 +33,7 @@ export class UsersComponent implements OnInit {
   }
 
   loadAllUsers() {
-    this.httpService.getAll('http://localhost:8000/auth/users')
+    this.httpService.getAll('http://localhost:8000/api/users')
     .subscribe((res) => {
       this.users = res;
       this.totalUsers = this.users.length;
