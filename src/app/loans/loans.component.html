@@ -1,22 +1,26 @@
 <div class ="container mt-5">
-    <h3>Loans</h3>
+    <h2>Loans</h2>
     <table class="table table-hover table-responsive-md">
       <caption>{{ totalLoans }} loan types found</caption>
       <thead>
         <tr>
-          <th scope="col">id</th>
-          <th scope="col" class="text-right">Max Amount</th>
-          <th scope="col" class ="text-center">Name</th>
-          <th scope="col" class="text-right">Interest Rate</th>
+          <th scope="col">ID</th>
+          <th scope="col" class ="text-center">User</th>
+          <th scope="col" class="text-right">Loan Type</th>
+          <th scope="col" class="text-right">Balance</th>
+          <th scope="col" class="text-right">Start Date</th>
+          <th scope="col" class="text-right">Status</th>
           <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let l of loans">
-          <td>{{ l.id }}</td>
-          <td class="text-right">${{ l.maxAmount }}</td>
-          <td class ="text-center">{{ l.name }}</td>
-          <td class="text-right">${{ l.interestRate }}</td>
+          <td>{{ l.userLoanId }}</td>
+          <td class ="text-center">{{ l.userAccount.user.lastName }}, {{ l.userAccount.user.firstName }}</td>
+          <td class="text-right">{{ l.userAccount.accountType.name }}</td>
+          <td class="text-right">${{ l.userAccount.balance }}</td>
+          <td class="text-right">{{ l.startDate }}</td>
+          <td class="text-right">{{ l.status }}</td>
           <td><button type="button" class="btn btn-primary btn-sm"><svg xmlns="http://www.w3.org/2000/svg"
             width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
@@ -26,8 +30,3 @@
       </tbody>
     </table>
   </div>
-<a href="/cashmoney/admin/createLoans" class="button">
-  <button class="addLoanButton">
-    Add
-  </button>
-</a>

@@ -13,7 +13,7 @@ export class ConfirmDialogService {
   public confirm(
     title: string,
     message: string,
-    btnOkText: string = 'OK',
+    btnOkText: string = 'Confirm',
     btnCancelText: string = 'Cancel',
     dialogSize: 'sm'|'lg' = 'sm'): Promise<boolean> {
     const modalRef = this.modalService.open(ConfirmDialogComponent, { size: dialogSize });

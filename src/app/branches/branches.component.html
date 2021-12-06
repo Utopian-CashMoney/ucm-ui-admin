@@ -1,6 +1,6 @@
 <div class="container mt-5">
-    <h3>Branches</h3>
-    <table class="table">
+    <h2>Branches</h2>
+    <table class="table table-hover table-responsive-md">
       <caption>{{ totalBranches }} branches found</caption>
       <thead>
         <tr>
@@ -10,8 +10,7 @@
           <th scope="col">Address</th>
           <th scope="col">City</th>
           <th scope="col">Phone</th>
-          <th scope="col">Opening Time</th>
-          <th scope="col">Closing Time</th>
+          <th scope="col">Hours</th>
           <th scope="col">Type</th>
           <th scope="col"></th>
         </tr>
@@ -24,8 +23,7 @@
           <td>{{ b.streetAddress }}</td>
           <td>{{ b.city }}</td>
           <td>{{ b.phone }}</td>
-          <td>{{ b.openingTime }}</td>
-          <td>{{ b.closingTime }}</td>
+          <td>{{ b.openingTime }}-{{ b.closingTime }}</td>
           <td>{{ b.type }}</td>
           <td><button type="button" class="btn btn-primary btn-sm"><svg xmlns="http://www.w3.org/2000/svg"
             width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">

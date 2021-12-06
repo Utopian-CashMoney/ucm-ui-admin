@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http'
 
 import { AppRoutingModule } from './app-routing.module';
@@ -17,12 +17,11 @@ import { HttpService } from './shared/services/http.service';
 import { BranchesComponent } from './branches/branches.component';
 import { AccountsComponent } from './accounts/accounts.component';
 import { UsersComponent } from './users/users.component';
-import { CreateLoanComponent } from './loans/createloans.component';
-import { CreateCardComponent } from './cards/createCard.component';
-import {ReactiveFormsModule} from '@angular/forms'
+import { ReactiveFormsModule } from '@angular/forms'
 import { ConfirmDialogComponent } from './confirmDialog/confirmDialog.component';
 import { ConfirmDialogService } from './confirmDialog/confirmDialogService.service';
-import { EditUserComponent } from './users/editUser.component'; 
+import { EditUserComponent } from './users/editUser.component';
+import { AddTypeComponent } from './accounts/add-type.component'; 
 
 @NgModule({
   declarations: [
@@ -36,10 +35,9 @@ import { EditUserComponent } from './users/editUser.component';
     BranchesComponent,
     AccountsComponent,
     UsersComponent,
-    CreateLoanComponent,
-    CreateCardComponent,
     ConfirmDialogComponent,
-    EditUserComponent
+    EditUserComponent,
+    AddTypeComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +49,7 @@ import { EditUserComponent } from './users/editUser.component';
     HttpClientModule,
   ],
 
-  providers: [HttpService, ConfirmDialogService],
+  providers: [HttpService, ConfirmDialogService, Title],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from 'src/app/shared/services/http.service';
+import { Title } from "@angular/platform-browser";
 
 @Component({
   selector: 'app-loans',
@@ -8,29 +9,19 @@ import { HttpService } from 'src/app/shared/services/http.service';
 })
 
 export class LoansComponent implements OnInit {
-  constructor(private httpService: HttpService) { }
+  constructor(private httpService: HttpService, private title: Title) { }
   loans: any;
   totalLoans = 0;
 
   ngOnInit(): void {
+    this.title.setTitle('Loans');
     this.loadAllLoans();
   }
 
-  // loadAllLoans() {
-  //   this.httpService
-  //   .getAll('http://localhost:8081/api/loans')
-  //     .subscribe((res) => {
-  //       this.loans = res;
-  //       this.totalLoans = this.loans.length;
-  //     });
-  // }
-
-
   // Gets all the loans in the database
-
   loadAllLoans() {
     this.httpService
-    .getAll('http://localhost:8081/loans')
+    .getAll('http://localhost:8081/api/loans')
       .subscribe((res) => {
         this.loans = res;
         this.totalLoans = this.loans.length;

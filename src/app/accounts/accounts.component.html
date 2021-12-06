@@ -1,79 +1,187 @@
-<!-- Nav tabs -->
-<ul class="nav nav-tabs nav-justified justify-content-center mt-3">
-  <li class="nav-item">
-    <a class="nav-link active" data-toggle="tab" href="#accounttypes">Account Types</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" data-toggle="tab" href="#accounts">Accounts</a>
-  </li>
+<div class="container mt-5">
 
-</ul>
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs nav-justified justify-content-center mt-3">
+    <li class="nav-item">
+      <a class="nav-link active" data-toggle="tab" href="#accounttypes">Account Types</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#accounts">Accounts</a>
+    </li>
+  </ul>
 
-<!-- Tab panes -->
-<div class="tab-content">
-  <div class="tab-pane container active" id="accounttypes">
-    <div class="container">
-      <table class="table">
-        <caption>{{ totalAccounts }} account types found</caption>
-        <thead>
-          <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Type</th>
-            <th scope="col">Allow Credit?</th>
-            <th scope="col">Credit Limit</th>
-            <th scope="col">Allow Cards?</th>
-            <th scope="col"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let a of accounts; let j = index">
-            <td>{{ a.name }}</td>
-            <td>{{ a.type }}</td>
-            <td>{{ a.allowCredit == true ? "YES" : "NO" }}</td>
-            <td>{{ a.creditLimit != 0 ? a.creditLimit : "N/A"}}</td>
-            <td>{{ a.allowCards == true ? "YES" : "NO" }}</td>
-            <td><button type="button" class="btn btn-primary btn-sm"><svg xmlns="http://www.w3.org/2000/svg"
-                  width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                  <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-                  <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
-                </svg> Edit</button></td>
-          </tr>
-        </tbody>
-      </table>
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div class="tab-pane container active" id="accounttypes">
+      <div class="container">
+        <table class="table table-hover table-responsive-md">
+          <caption>{{ totalAccounts }} account types found</caption>
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Type</th>
+              <th scope="col">Credit Limit</th>
+              <th scope="col">APR</th>
+              <th scope="col">Allow Cards?</th>
+              <th scope="col">Description</th>
+              <th scope="col"></th>
+              <th><app-add-type></app-add-type></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let a of accounts">
+              <td>{{ a.name }}</td>
+              <td>{{ a.type }}</td>
+              <td>{{ a.allowCredit != 0 ? "$" : "" }}{{ a.creditLimit != 0 ? a.creditLimit : "N/A"}}</td>
+              <td>{{ a.apr != 0 ? a.apr : "N/A" }}{{ a.apr != 0 ? "%" : "" }}</td>
+              <td>{{ a.allowCards == true ? "YES" : "NO" }}</td>
+              <td>{{ a.perks != null ? a.perks : "N/A" }}</td>
+              <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editAccountType">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                  </svg> Edit </button></td>
+              <td><button type="button" class="btn btn-danger btn-sm" (click)="openDeleteConfirmationDialog(a.id, a.name)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                  <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                </svg> Delete </button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
 
-  </div>
-  <div class="tab-pane container fade" id="accounts">
-    <div class="container">
-      <table class="table">
-        <caption>{{ totalUserAccounts }} accounts found</caption>
-        <thead>
-          <tr>
-            <th scope="col">Account Number</th>
-            <th scope="col">Account Type</th>
-            <th scope="col">Username</th>
-            <th scope="col">Name (Last, First)</th>
-            <th scope="col">Balance</th>
-            <th scope="col">Status</th>
-            <th scope="col"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let u of userAccounts; let i = index">
-            <td>{{ u.accountNumber }}</td>
-            <td>{{ u.account.name }}</td>
-            <td>{{ u.user.username }}</td>
-            <td>{{ u.user.lastName }}, {{ u.user.firstName }}</td>
-            <td>{{ u.balance }}</td>
-            <td>{{ u.active == true ? "ACTIVE" : "INACTIVE"}}</td>
-            <td><button type="button" class="btn btn-primary btn-sm"><svg xmlns="http://www.w3.org/2000/svg"
-                  width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                  <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-                  <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
-                </svg> Edit</button></td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="tab-pane container fade" id="accounts">
+      <div class="container">
+        <table class="table table-hover table-responsive-md">
+          <caption>{{ totalUserAccounts }} accounts found</caption>
+          <thead>
+            <tr>
+              <th scope="col">Account Number</th>
+              <th scope="col">Account Type</th>
+              <th scope="col">Username</th>
+              <th scope="col">Name (Last, First)</th>
+              <th scope="col">Balance</th>
+              <th scope="col">Status</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let u of userAccounts; let i = index">
+              <td>{{ u.accountNumber }}</td>
+              <td>{{ u.accountType.type }}: {{ u.accountType.name }}</td>
+              <td>{{ u.user.username }}</td>
+              <td>{{ u.user.lastName }}, {{ u.user.firstName }}</td>
+              <td>${{ u.balance }}</td>
+              <td>{{ u.active == true ? "ACTIVE" : "INACTIVE"}}</td>
+              <td><button type="button" class="btn btn-primary btn-sm"><svg xmlns="http://www.w3.org/2000/svg"
+                    width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                    <path
+                      d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                    <path fill-rule="evenodd"
+                      d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                  </svg> Edit</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
+</div>
+
+  <!-- Edit Account Type Modal-->
+  <div class="modal fade" id="editAccountType" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Account Type</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <!-- Begin Form -->
+                <form [formGroup]="form" (ngSubmit)="onSubmit(4)">
+                  <!-- Type -->
+                  <div class="form-group">
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="type" id="type1" value="CREDIT" checked formControlName="type" (click)="showCredit();">
+                      <label class="form-check-label" for="exampleRadios1">
+                        Credit
+                      </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="type" id="type2" value="DEBIT" formControlName="type" (click)="hideCredit();">
+                      <label class="form-check-label" for="exampleRadios1">
+                        Debit
+                      </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="type" id="type3" value="LOAN" formControlName="type" (click)="showCredit();">
+                      <label class="form-check-label" for="exampleRadios1">
+                        Loan
+                      </label>
+                    </div>
+                  </div>
+                  <!-- Name -->
+                  <div class="form-group">
+                    <label class="label">Name</label>
+                    <input type="text" formControlName="name" class="form-control" placeholder="Name of account type" ngModel
+                    pattern="^[a-zA-Z0-9_]+( [a-zA-Z0-9_]+)*$" [ngClass]="{ 'is-invalid': inputCheck && f.name.errors }">
+                    <div *ngIf="inputCheck && f.name.errors" class="invalid-feedback">
+                      <div *ngIf="f.name.errors.required" class="label">Name is required</div>
+                      <div *ngIf="f.name.errors?.pattern" class="label">
+                        Name is invalid
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Credit Limit & APR -->
+                  <div *ngIf="displayCredit">
+                    <div class="form-row">
+                      <div class="col-7">
+                        <label class="label">Credit Limit ($)</label>
+                        <input type="text" formControlName="creditLimit" class="form-control" placeholder="Credit limit" ngModel
+                        pattern="^^[1-9]\d*(\.\d+)?$" [ngClass]="{ 'is-invalid': inputCheck && f.creditLimit.errors }">
+                        <div *ngIf="inputCheck && f.creditLimit.errors" class="invalid-feedback">
+                          <div *ngIf="f.creditLimit.errors.required && f.type.value != 'DEBIT'" class="label">Credit Limit is required</div>
+                          <div *ngIf="f.creditLimit.errors?.pattern" class="label">
+                            Credit Limit is invalid
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col">
+                        <label class="label">APR (%)</label>
+                        <input type="text" formControlName="apr" class="form-control" placeholder="APR" ngModel
+                        pattern="^^[1-9]\d*(\.\d+)?$" [ngClass]="{ 'is-invalid': inputCheck && f.apr.errors }">
+                        <div *ngIf="inputCheck && f.apr.errors" class="invalid-feedback">
+                          <div *ngIf="f.apr.errors.required && f.type.value != 'DEBIT'" class="label">APR is required</div>
+                          <div *ngIf="f.apr.errors.apr" class="label">APR is invalid</div>
+                          <div *ngIf="f.apr.errors?.pattern" class="label">
+                            APR is invalid
+                          </div>
+                        </div>
+                      </div>
+                    </div><br>
+                  </div>
+                  <!-- Perks -->
+                  <div class="form-group">
+                    <label class="label"> Description </label>
+                    <textarea type="text" formControlName="perks" class="form-control"
+                    placeholder="Short description of the account type"
+                    [ngClass]="{ 'is-invalid': inputCheck && f.perks.errors }"></textarea>
+                    <div *ngIf="inputCheck && f.perks.errors" class="invalid-feedback">
+                      <div *ngIf="f.perks.errors.required " class="label">Description is required</div>
+                    </div>
+                  </div>
+                </form>
+                <!-- End Form -->
+              </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary" (click)="openEditConfirmationDialog(4); checkInput();">Save</button>
+              <button type="button" (click)="onReset()" class="btn btn-info">Reset</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            </div>
+          </div>
+        </div>
 </div>
